@@ -13,24 +13,25 @@
   <div id="app" class="container my-5 w-50">
     <!--<h1>{{ word }}</h1>-->
     <div class="row justify-content-center py-1" style="height: 75px" v-for="row in grid">
-      <div class="col-1 border border-dark rounded mx-1" v-for="char in row">
-        <span v-if="char == ''">&nbsp;</span>
-        <span v-else>{{ char }}</span>
+      <div v-bind:class="_char.classes" v-for="_char in row">
+        <span v-if="_char.letter == ''">&nbsp;</span>
+        <span v-else>{{ _char.letter }}</span>
+
       </div>
     </div>
     <br>
 
     <div class="d-flex flex-row justify-content-center">
-      <button v-on:click="playLetter" v-for="char in keyrow1" class="bg-muted border-0 m-1 p-3 rounded">{{ char }}
+      <button v-on:click="playLetter" v-for="_char in keyrow1" v-bind:class="_char.classes">{{ _char.letter }}
       </button>
     </div>
     <div class="d-flex flex-row justify-content-center">
-      <button v-on:click="playLetter" v-for="char in keyrow2" class="bg-muted border-0 m-1 p-3 rounded">{{ char }}
+      <button v-on:click="playLetter" v-for="_char in keyrow2" v-bind:class="_char.classes">{{ _char.letter }}
       </button>
     </div>
     <div class="d-flex flex-row justify-content-center">
       <button v-on:click="enter" :disabled="col<5" class="bg-muted border-0 m-1 p-3 rounded">⏎</button>
-      <button v-on:click="playLetter" v-for="char in keyrow3" class="bg-muted border-0 m-1 p-3 rounded">{{ char }}
+      <button v-on:click="playLetter" v-for="_char in keyrow3" v-bind:class="_char.classes">{{ _char.letter }}
       </button>
       <button v-on:click="backspace" :disabled="col==0"class="bg-muted border-0 m-1 p-3 rounded">←</button>
     </div>
